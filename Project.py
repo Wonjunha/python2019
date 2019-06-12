@@ -47,4 +47,13 @@ print('산란파 파장:'+ str(scat)) #산란파 파장 출력
 
 
 #######컴프턴 산란 그래픽 구현#######
+plt.rc('font', family = 'Malgun Gothic')
+x=np.linspace(-10,10,100)
+y1=np.sin(x/(inci*10**11)) #입사광 그래프 구현
+y2=np.sin(x/(scat*10**11)) #산란파 그래프 구현
+plt.plot(x,y1,label='입사광')
+plt.plot(x,y2,label='산란파')
+plt.show()
+
+
 
