@@ -34,17 +34,17 @@ h = 6.62607004 * (10**-34)   #플랑크 상수
 inci = float(input("입사광의 파장 :"))
 theta = float(input("산란각 :"))
 
-theta=math.pi*(theta/180)
+theta=math.pi*(theta/180) #라디안으로 변환
 
 #수식
 #scat - inci = (h/(m*c))*(1-math.cos(theta))
 
-print(math.cos(theta))
+
 scat = inci + (h/(m*c))*(1-math.cos(theta)) #산란광 파장 계산
 
 
 print('산란파 파장:'+ str(scat)) #산란파 파장 출력
-
+pi=math.asin(h*math.sin(theta)/(m*c*scat)) #전자 튕기는 각 구현
 
 #######컴프턴 산란 그래픽 구현#######
 plt.rc('font', family = 'Malgun Gothic')
@@ -56,8 +56,8 @@ plt.plot(x,y2,label='산란파')
 plt.show()
 
 
-vp_inci = sphere(pos = vec(0,0,0), make_trail=True, radius=0.2, color=color.red)
-vp_radi = sphere(pos = vec(5,0,0), make_trail=True, radius=0.2)
+vp_inci = sphere(pos = vec(0,0,0), make_trail=True, radius=0.0002, color=color.red)
+vp_radi = sphere(pos = vec(5,0,0), make_trail=True, radius=0.08)
 vp_inci.velocity = vec(1,0,0)
 vp_radi.velocity = vec(0,0,0)
 
@@ -68,4 +68,5 @@ while True:
     vp_radi.pos = vp_radi.pos + vp_radi.velocity * dt
     if vp_inci.pos.x>=5:
         vp_inci.velocity = vec(math.cos(theta),math.sin(theta),0)
-        #vp_radi.velocity = vec()
+        vp_radi.velocity = vec(math.cos(pi),-math.sin(theta),0)
+
