@@ -56,4 +56,16 @@ plt.plot(x,y2,label='산란파')
 plt.show()
 
 
+vp_inci = sphere(pos = vec(0,0,0), make_trail=True, radius=0.2, color=color.red)
+vp_radi = sphere(pos = vec(5,0,0), make_trail=True, radius=0.2)
+vp_inci.velocity = vec(1,0,0)
+vp_radi.velocity = vec(0,0,0)
 
+dt = 0.01
+while True:
+    rate(100)
+    vp_inci.pos = vp_inci.pos + vp_inci.velocity * dt
+    vp_radi.pos = vp_radi.pos + vp_radi.velocity * dt
+    if vp_inci.pos.x>=5:
+        vp_inci.velocity = vec(math.cos(theta),math.sin(theta),0)
+        #vp_radi.velocity = vec()
